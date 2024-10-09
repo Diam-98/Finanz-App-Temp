@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Finance Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body class="bg-gray-100">
+    <div class="flex flex-col lg:flex-row min-h-screen">
+      <!-- Sidebar -->
+      <aside
+        id="sidebar"
+        class="bg-white w-64 h-full p-6 shadow-md fixed top-0 left-0 flex flex-col lg:translate-x-0 -translate-x-full transform transition-transform duration-300 ease-in-out"
+      >
+        <button
+          class="text-gray-500 mb-4 lg:hidden"
+          onclick="toggleSidebar()"
+          aria-label="Close Sidebar"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+        <h1 class="text-2xl font-bold text-blue-600 mb-6">Finanzen</h1>
+        <nav class="space-y-4 flex-grow">
+          <a href="/" class="flex items-center text-blue-600 space-x-2">
+            <span class="w-4 h-4 bg-blue-500 rounded"></span>
+            <span>Dashboard</span>
+          </a>
+          <a
+            href="./card.html"
+            class="flex items-center space-x-2 text-gray-700"
+          >
+            <span class="w-4 h-4 bg-gray-300 rounded"></span>
+            <span>Mes Cartes</span>
+          </a>
+          <a
+            href="./transaction.html"
+            class="flex items-center space-x-2 text-gray-700"
+          >
+            <span class="w-4 h-4 bg-gray-300 rounded"></span>
+            <span>Transactions</span>
+          </a>
+          <a
+            href="./poche.html"
+            class="flex items-center space-x-2 text-blue-600"
+          >
+            <span class="w-4 h-4 bg-blue-500 rounded"></span>
+            <span>Gestion des Poches</span>
+          </a>
+          <a href="#" class="flex items-center space-x-2 text-gray-700">
+            <span class="w-4 h-4 bg-gray-300 rounded"></span>
+            <span>Statistics</span>
+          </a>
+        </nav>
+
+        <button class="mt-auto text-red-500 flex items-center space-x-2 w-full">
+          <span>Logout</span>
+        </button>
+      </aside>
+
+      <!-- Overlay for Mobile Sidebar -->
+      <div
+        id="overlay"
+        class="fixed inset-0 hidden bg-black bg-opacity-50 lg:hidden"
+        onclick="toggleSidebar()"
+      ></div>
+
+      <!-- Main Content -->
+      <main class="flex-1 p-6 lg:ml-64">
+        <!-- Toggle Button for Mobile -->
+        <button
+          class="lg:hidden mb-4 p-2 bg-blue-600 text-white rounded-lg"
+          onclick="toggleSidebar()"
+          aria-label="Open Sidebar"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <div
+          class="flex flex-col lg:flex-row justify-between items-center mb-6"
+        >
+          <input
+            type="text"
+            placeholder="Search your transaction here"
+            class="w-full lg:w-1/3 p-2 rounded-lg border border-gray-300"
+          />
+          <div class="flex items-center space-x-4 mt-4 lg:mt-0">
+            <div class="flex items-center space-x-2">
+              <img
+                src="https://via.placeholder.com/40"
+                alt="Profile"
+                class="rounded-full w-10 h-10"
+              />
+              <div>
+                <h3 class="text-gray-800">Lee Seaba</h3>
+                <p class="text-gray-500 text-sm">seaba.lee@hello.mail</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
+          <!-- Balance Card -->
+          <div class="bg-white p-4 rounded-lg shadow">
+            <div class="flex justify-between items-center">
+              <h3 class="text-gray-500">My Balance</h3>
+              <span class="bg-yellow-100 p-2 rounded-full">💰</span>
+            </div>
+            <p class="text-3xl font-semibold mt-2">786,351.623</p>
+            <p class="text-green-500 text-sm">+12% compared to last month</p>
+          </div>
+
+          <!-- Income Card -->
+          <div class="bg-white p-4 rounded-lg shadow">
+            <div class="flex justify-between items-center">
+              <h3 class="text-gray-500">Monthly Income</h3>
+              <span class="bg-green-100 p-2 rounded-full">📈</span>
+            </div>
+            <p class="text-3xl font-semibold mt-2">49,768.920</p>
+            <p class="text-green-500 text-sm">+12% compared to last month</p>
+          </div>
+
+          <!-- Expenses Card -->
+          <div class="bg-white p-4 rounded-lg shadow">
+            <div class="flex justify-between items-center">
+              <h3 class="text-gray-500">Monthly Expenses</h3>
+              <span class="bg-red-100 p-2 rounded-full">📉</span>
+            </div>
+            <p class="text-3xl font-semibold mt-2">24,679.852</p>
+            <p class="text-red-500 text-sm">-12% compared to last month</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <!-- Main Content Left -->
+          <div class="lg:col-span-2">
+            <!-- Cash Flow Report -->
+            <div class="bg-white p-6 rounded-lg shadow mb-6">
+              <h3 class="text-gray-700">Cash Flow Report</h3>
+              <div class="mt-4">
+                <canvas id="cashFlowChart" class="w-full"></canvas>
+              </div>
+            </div>
+
+            <!-- Transaction History -->
+            <div class="bg-white p-6 rounded-lg shadow overflow-x-auto">
+              <div class="flex justify-between items-center">
+                <h3 class="text-gray-700 font-semibold text-lg">
+                  Transaction History
+                </h3>
+                <div>
+                  <select class="border rounded-lg p-2">
+                    <option>Monthly</option>
+                    <option>Yearly</option>
+                  </select>
+                </div>
+              </div>
+
+              <table class="w-full mt-4 min-w-[600px]">
+                <thead>
+                  <tr class="text-gray-500">
+                    <th class="text-left p-3">Name</th>
+                    <th class="text-left p-3">Transaction ID</th>
+                    <th class="text-left p-3">Date</th>
+                    <th class="text-left p-3">Status</th>
+                    <th class="text-left p-3">Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Row 1 -->
+                  <tr class="border-b">
+                    <td class="p-3 flex items-center">
+                      <img
+                        src="https://via.placeholder.com/40"
+                        alt="Profile"
+                        class="w-8 h-8 rounded-full mr-2"
+                      />
+                      <span>Anastasia</span>
+                    </td>
+                    <td class="p-3">FVB-092412</td>
+                    <td class="p-3">Sep 29, 2023</td>
+                    <td class="p-3">
+                      <span class="text-green-500 bg-green-100 p-2 rounded-full"
+                        >● Completed</span
+                      >
+                    </td>
+                    <td class="p-3">$12,200</td>
+                  </tr>
+
+                  <!-- Row 2 -->
+                  <tr class="border-b">
+                    <td class="p-3 flex items-center">
+                      <img
+                        src="https://via.placeholder.com/40"
+                        alt="Profile"
+                        class="w-8 h-8 rounded-full mr-2"
+                      />
+                      <span>Daniel</span>
+                    </td>
+                    <td class="p-3">DEW-076213</td>
+                    <td class="p-3">Sep 16, 2023</td>
+                    <td class="p-3">
+                      <span class="text-red-500 bg-red-100 p-2 rounded-full"
+                        >● Pending</span
+                      >
+                    </td>
+                    <td class="p-3">$6,640</td>
+                  </tr>
+
+                  <!-- Row 3 -->
+                  <tr>
+                    <td class="p-3 flex items-center">
+                      <img
+                        src="https://via.placeholder.com/40"
+                        alt="Profile"
+                        class="w-8 h-8 rounded-full mr-2"
+                      />
+                      <span>Monica</span>
+                    </td>
+                    <td class="p-3">KMN-072309</td>
+                    <td class="p-3">Oct 23, 2023</td>
+                    <td class="p-3">
+                      <span class="text-green-500 bg-green-100 p-2 rounded-full"
+                        >● Completed</span
+                      >
+                    </td>
+                    <td class="p-3">$23,450</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Right Column (My Cards, Quick Transactions, Savings) -->
+          <div class="space-y-4">
+            <!-- My Cards -->
+            <!--
+            <div class="bg-white p-4 rounded-lg shadow">
+              <h3 class="text-gray-700">My Cards</h3>
+              <div class="mt-4">
+                <div class="bg-blue-500 p-4 rounded-lg text-white">
+                  <h4 class="text-xl">Visa - 1234</h4>
+                  <p class="text-sm">Exp: 12/25</p>
+                </div>
+                <div class="bg-green-500 p-4 rounded-lg text-white mt-4">
+                  <h4 class="text-xl">Mastercard - 5678</h4>
+                  <p class="text-sm">Exp: 11/24</p>
+                </div>
+              </div>
+            </div>
+            -->
+
+            <div class="my-cards-container bg-white p-6 rounded-lg shadow-md">
+              <h2 class="text-xl font-semibold mb-4">My cards</h2>
+              <p class="text-gray-600 mb-4">Add and update your card detail</p>
+              <div class="card-wrapper">
+                <div
+                  class="card bg-gradient-to-r from-blue-500 to-purple-500 p-4 rounded-lg shadow-lg"
+                >
+                  <div class="flex justify-between items-center">
+                    <span class="text-white text-lg font-semibold"
+                      >FinView Bank</span
+                    >
+                    <div class="text-white">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M15 12h4m0 0h-4m4 0H9m0 0h4m4 0h-4m-4 0V7m0 5h8"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="text-white text-2xl mt-2">
+                    3234 8678 4234 7628
+                  </div>
+                  <div class="flex justify-between mt-4">
+                    <span>Card Holder name</span>
+                    <span>Expiry date</span>
+                  </div>
+                  <div class="flex justify-between text-white">
+                    <span>Lee Seaba</span>
+                    <span>08/24</span>
+                  </div>
+                </div>
+                <!-- Ajoutez d'autres cartes de la même manière -->
+              </div>
+              <div class="add-card-btn mt-4">
+                <button
+                  class="bg-blue-600 text-white py-2 px-4 rounded-full"
+                  onclick="openCardPopup()"
+                >
+                  <span class="flex items-center justify-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5 mr-1"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 4v16m8-8H4"
+                      />
+                    </svg>
+                    Add Card
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Quick Transactions -->
+            <div class="bg-white p-4 rounded-lg shadow">
+              <h3 class="text-gray-700">Quick Transactions</h3>
+              <div class="mt-4">
+                <button
+                  class="w-full bg-blue-600 text-white p-2 rounded-lg"
+                  onclick="openPopup()"
+                >
+                  Add Transaction
+                </button>
+              </div>
+            </div>
+
+            <!-- Savings Goal -->
+            <!--
+            <div class="bg-white p-4 rounded-lg shadow">
+              <h3 class="text-gray-700">Savings Goal</h3>
+              <div class="mt-4">
+                <p class="text-gray-500">Your savings goal:</p>
+                <p class="text-3xl font-semibold">$10,000</p>
+                <button
+                  class="w-full bg-green-600 text-white p-2 rounded-lg mt-4"
+                >
+                  Add Savings
+                </button>
+              </div>
+            </div>
+            -->
+
+            <!-- Savings Section -->
+            <div class="bg-white p-6 rounded-lg shadow">
+              <h3 class="text-gray-700 font-semibold text-lg">Savings</h3>
+
+              <!-- Education Savings -->
+              <div class="mt-4">
+                <div class="flex justify-between items-center">
+                  <span class="font-medium text-gray-700">Education</span>
+                  <span class="text-sm text-gray-500">Target: $50,000</span>
+                </div>
+                <div class="flex justify-between items-center mt-1">
+                  <span class="text-blue-500 text-lg font-semibold"
+                    >$25,000</span
+                  >
+                  <span class="text-sm text-gray-500"
+                    >Monthly savings: $500</span
+                  >
+                </div>
+                <div class="w-full bg-gray-200 h-2 mt-2 rounded-full">
+                  <div
+                    class="bg-blue-500 h-2 rounded-full"
+                    style="width: 50%"
+                  ></div>
+                </div>
+              </div>
+
+              <!-- Travelling Savings -->
+              <div class="mt-4">
+                <div class="flex justify-between items-center">
+                  <span class="font-medium text-gray-700">Travelling</span>
+                  <span class="text-sm text-gray-500">Target: $40,000</span>
+                </div>
+                <div class="flex justify-between items-center mt-1">
+                  <span class="text-purple-500 text-lg font-semibold"
+                    >$5,000</span
+                  >
+                  <span class="text-sm text-gray-500"
+                    >Monthly savings: $100</span
+                  >
+                </div>
+                <div class="w-full bg-gray-200 h-2 mt-2 rounded-full">
+                  <div
+                    class="bg-purple-500 h-2 rounded-full"
+                    style="width: 12.5%"
+                  ></div>
+                </div>
+              </div>
+
+              <!-- Emergency Fund -->
+              <div class="mt-4">
+                <div class="flex justify-between items-center">
+                  <span class="font-medium text-gray-700">Emergency Fund</span>
+                  <span class="text-sm text-gray-500">Target: $35,000</span>
+                </div>
+                <div class="flex justify-between items-center mt-1">
+                  <span class="text-red-500 text-lg font-semibold"
+                    >$15,000</span
+                  >
+                  <span class="text-sm text-gray-500"
+                    >Monthly savings: $100</span
+                  >
+                </div>
+                <div class="w-full bg-gray-200 h-2 mt-2 rounded-full">
+                  <div
+                    class="bg-red-500 h-2 rounded-full"
+                    style="width: 42.86%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Transaction Popup -->
+        <div
+          id="transactionPopup"
+          class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden"
+        >
+          <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 md:w-1/3">
+            <h2 class="text-lg font-semibold mb-4">Add Transaction</h2>
+            <form id="transactionForm">
+              <div class="mb-4">
+                <label
+                  for="transactionType"
+                  class="block text-sm font-medium text-gray-700"
+                  >Type de transaction</label
+                >
+                <select
+                  id="transactionType"
+                  name="transactionType"
+                  required
+                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                >
+                  <option value="">Sélectionnez un type</option>
+                  <option value="depense">Dépense</option>
+                  <option value="revenu">Revenu</option>
+                  <option value="transfert">Transfert</option>
+                </select>
+              </div>
+
+              <!-- Champs pour Dépense -->
+              <div id="depenseFields" class="transaction-fields mb-4 hidden">
+                <label
+                  for="transactionAmount"
+                  class="block text-sm font-medium text-gray-700"
+                  >Montant de la dépense</label
+                >
+                <input
+                  type="number"
+                  id="transactionAmount"
+                  name="transactionAmount"
+                  required
+                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+              </div>
+
+              <!-- Champs pour Revenu -->
+              <div id="revenuFields" class="transaction-fields mb-4 hidden">
+                <label
+                  for="transactionAmount"
+                  class="block text-sm font-medium text-gray-700"
+                  >Montant du revenu</label
+                >
+                <input
+                  type="number"
+                  id="transactionAmount"
+                  name="transactionAmount"
+                  required
+                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+              </div>
+
+              <!-- Champs pour Transfert -->
+              <div id="transfertFields" class="transaction-fields mb-4 hidden">
+                <label
+                  for="transactionAmount"
+                  class="block text-sm font-medium text-gray-700"
+                  >Montant du transfert</label
+                >
+                <input
+                  type="number"
+                  id="transactionAmount"
+                  name="transactionAmount"
+                  required
+                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+                <label
+                  for="account"
+                  class="block text-sm font-medium text-gray-700"
+                  >Sélectionnez un compte</label
+                >
+                <select
+                  id="account"
+                  name="account"
+                  required
+                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                >
+                  <option value="">Sélectionnez un compte</option>
+                  <option value="compte1">Compte 1</option>
+                  <option value="compte2">Compte 2</option>
+                  <!-- Ajoutez d'autres comptes ici -->
+                </select>
+              </div>
+
+              <div class="mb-4">
+                <label
+                  for="transactionName"
+                  class="block text-sm font-medium text-gray-700"
+                  >Nom de la transaction</label
+                >
+                <input
+                  type="text"
+                  id="transactionName"
+                  name="transactionName"
+                  required
+                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+              </div>
+              <div class="mb-4">
+                <label
+                  for="transactionID"
+                  class="block text-sm font-medium text-gray-700"
+                  >ID de la transaction</label
+                >
+                <input
+                  type="text"
+                  id="transactionID"
+                  name="transactionID"
+                  required
+                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+              </div>
+              <div class="mb-4">
+                <label
+                  for="transactionDate"
+                  class="block text-sm font-medium text-gray-700"
+                  >Date</label
+                >
+                <input
+                  type="date"
+                  id="transactionDate"
+                  name="transactionDate"
+                  required
+                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+              </div>
+              <div class="mb-4">
+                <label
+                  for="transactionStatus"
+                  class="block text-sm font-medium text-gray-700"
+                  >Statut</label
+                >
+                <select
+                  id="transactionStatus"
+                  name="transactionStatus"
+                  required
+                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                >
+                  <option value="Completed">Complété</option>
+                  <option value="Pending">En attente</option>
+                  <option value="Failed">Échoué</option>
+                </select>
+              </div>
+
+              <div class="flex justify-between">
+                <button
+                  type="button"
+                  class="bg-red-500 text-white py-2 px-4 rounded"
+                  onclick="closePopup()"
+                >
+                  Annuler
+                </button>
+                <button
+                  type="submit"
+                  class="bg-blue-600 text-white py-2 px-4 rounded"
+                >
+                  Ajouter la transaction
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- Card Popup -->
+        <div
+          id="cardPopup"
+          class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden"
+        >
+          <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 md:w-1/3">
+            <h2 class="text-lg font-semibold mb-4">
+              Ajouter une carte bancaire
+            </h2>
+            <form id="cardForm">
+              <div class="mb-4">
+                <label
+                  for="cardHolder"
+                  class="block text-sm font-medium text-gray-700"
+                  >Titulaire de la carte</label
+                >
+                <input
+                  type="text"
+                  id="cardHolder"
+                  name="cardHolder"
+                  required
+                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+              </div>
+              <div class="mb-4">
+                <label
+                  for="cardNumber"
+                  class="block text-sm font-medium text-gray-700"
+                  >Numéro de la carte</label
+                >
+                <input
+                  type="text"
+                  id="cardNumber"
+                  name="cardNumber"
+                  required
+                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+              </div>
+              <div class="mb-4">
+                <label
+                  for="expiryDate"
+                  class="block text-sm font-medium text-gray-700"
+                  >Date d'expiration</label
+                >
+                <input
+                  type="month"
+                  id="expiryDate"
+                  name="expiryDate"
+                  required
+                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+              </div>
+              <div class="mb-4">
+                <label for="cvv" class="block text-sm font-medium text-gray-700"
+                  >CVV</label
+                >
+                <input
+                  type="text"
+                  id="cvv"
+                  name="cvv"
+                  required
+                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+              </div>
+              <div class="flex justify-between">
+                <button
+                  type="button"
+                  class="bg-red-500 text-white py-2 px-4 rounded"
+                  onclick="closeCardPopup()"
+                >
+                  Annuler
+                </button>
+                <button
+                  type="submit"
+                  class="bg-blue-600 text-white py-2 px-4 rounded"
+                >
+                  Ajouter la carte
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar')
+        const overlay = document.getElementById('overlay')
+        sidebar.classList.toggle('-translate-x-full')
+        overlay.classList.toggle('hidden')
+      }
+
+      // Fonction pour ouvrir le popup
+      function openPopup() {
+        document.getElementById('transactionPopup').classList.remove('hidden')
+      }
+
+      // Fonction pour fermer le popup
+      function closePopup() {
+        document.getElementById('transactionPopup').classList.add('hidden')
+      }
+
+      // Afficher les champs en fonction du type de transaction
+      document
+        .getElementById('transactionType')
+        .addEventListener('change', function () {
+          const selectedType = this.value
+          const depenseFields = document.getElementById('depenseFields')
+          const revenuFields = document.getElementById('revenuFields')
+          const transfertFields = document.getElementById('transfertFields')
+
+          // Masquer tous les champs d'transaction
+          depenseFields.classList.add('hidden')
+          revenuFields.classList.add('hidden')
+          transfertFields.classList.add('hidden')
+
+          // Afficher les champs correspondant au type sélectionné
+          if (selectedType === 'depense') {
+            depenseFields.classList.remove('hidden')
+          } else if (selectedType === 'revenu') {
+            revenuFields.classList.remove('hidden')
+          } else if (selectedType === 'transfert') {
+            transfertFields.classList.remove('hidden')
+          }
+        })
+
+      // Ajouter un événement au formulaire
+      document
+        .getElementById('transactionForm')
+        .addEventListener('submit', function (e) {
+          e.preventDefault() // Empêche l'envoi du formulaire
+          // Ajoutez ici la logique pour traiter la transaction
+          alert('Transaction ajoutée avec succès !')
+          closePopup() // Ferme le popup après ajout
+        })
+
+      // Fonction pour ouvrir le popup de la carte
+      function openCardPopup() {
+        document.getElementById('cardPopup').classList.remove('hidden')
+      }
+
+      // Fonction pour fermer le popup de la carte
+      function closeCardPopup() {
+        document.getElementById('cardPopup').classList.add('hidden')
+      }
+
+      // Ajouter un événement au formulaire de carte
+      document
+        .getElementById('cardForm')
+        .addEventListener('submit', function (e) {
+          e.preventDefault() // Empêche l'envoi du formulaire
+          // Ajoutez ici la logique pour traiter l'ajout de la carte
+          alert('Carte ajoutée avec succès !')
+          closeCardPopup() // Ferme le popup après ajout
+        })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+.my-cards-container {
+  width: 100%;
+  max-width: 600px;
+}
+
+.card {
+  margin-bottom: 1rem;
+}
+
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-card-btn {
+  text-align: center;
+}
