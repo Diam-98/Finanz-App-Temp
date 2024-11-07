@@ -25,9 +25,9 @@
         >
           <i class="fas fa-times"></i>
         </button>
-        <h1 class="text-2xl font-bold text-blue-600 mb-6">Finanzen</h1>
+        <h1 class="text-2xl font-bold text-blue-600 mb-6">FinanzApp</h1>
         <nav class="space-y-4 flex-grow">
-          <a href="/" class="flex items-center text-blue-600 space-x-2">
+          <a href="/" class="flex items-center space-x-2 text-gray-700">
             <span class="w-4 h-4 bg-blue-500 rounded"></span>
             <span>Dashboard</span>
           </a>
@@ -35,40 +35,33 @@
             href="./card.html"
             class="flex items-center space-x-2 text-gray-700"
           >
-            <span class="w-4 h-4 bg-gray-300 rounded"></span>
+            <span class="w-4 h-4 bg-blue-500 rounded"></span>
             <span>Mes Cartes</span>
           </a>
           <a
             href="./transaction.html"
             class="flex items-center space-x-2 text-gray-700"
           >
-            <span class="w-4 h-4 bg-gray-300 rounded"></span>
+            <span class="w-4 h-4 bg-blue-500 rounded"></span>
             <span>Transactions</span>
           </a>
           <a
             href="./poche.html"
-            class="flex items-center space-x-2 text-blue-600"
+            class="flex items-center space-x-2 text-gray-700"
           >
             <span class="w-4 h-4 bg-blue-500 rounded"></span>
             <span>Gestion des Poches</span>
           </a>
           <a href="#" class="flex items-center space-x-2 text-gray-700">
-            <span class="w-4 h-4 bg-gray-300 rounded"></span>
+            <span class="w-4 h-4 bg-blue-500 rounded"></span>
             <span>Statistics</span>
           </a>
         </nav>
 
         <button class="mt-auto text-red-500 flex items-center space-x-2 w-full">
-          <span>Logout</span>
+          <span>Deconnexion</span>
         </button>
       </aside>
-
-      <!-- Overlay for Mobile Sidebar -->
-      <div
-        id="overlay"
-        class="fixed inset-0 hidden bg-black bg-opacity-50 lg:hidden"
-        onclick="toggleSidebar()"
-      ></div>
 
       <!-- Main Content -->
       <main class="flex-1 p-6 lg:ml-64">
@@ -86,7 +79,7 @@
         >
           <input
             type="text"
-            placeholder="Search your transaction here"
+            placeholder="Rechercher"
             class="w-full lg:w-1/3 p-2 rounded-lg border border-gray-300"
           />
           <div class="flex items-center space-x-4 mt-4 lg:mt-0">
@@ -106,11 +99,11 @@
 
         <!-- Page Heading -->
         <div class="flex justify-between items-center mb-6">
-          <h1 class="text-2xl font-bold">My Cards</h1>
+          <h1 class="text-2xl font-bold">Mes Cartes</h1>
           <button
             class="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700"
           >
-            Add New Card
+            Ajouter une carte
           </button>
         </div>
 

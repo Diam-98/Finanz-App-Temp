@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Responsive Finance Dashboard</title>
+    <title>Finance App Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
@@ -25,9 +25,9 @@
         >
           <i class="fas fa-times"></i>
         </button>
-        <h1 class="text-2xl font-bold text-blue-600 mb-6">Finanzen</h1>
+        <h1 class="text-2xl font-bold text-blue-600 mb-6">FinanzApp</h1>
         <nav class="space-y-4 flex-grow">
-          <a href="/" class="flex items-center text-blue-600 space-x-2">
+          <a href="/" class="flex items-center space-x-2 text-gray-700">
             <span class="w-4 h-4 bg-blue-500 rounded"></span>
             <span>Dashboard</span>
           </a>
@@ -35,40 +35,33 @@
             href="./card.html"
             class="flex items-center space-x-2 text-gray-700"
           >
-            <span class="w-4 h-4 bg-gray-300 rounded"></span>
+            <span class="w-4 h-4 bg-blue-500 rounded"></span>
             <span>Mes Cartes</span>
           </a>
           <a
             href="./transaction.html"
             class="flex items-center space-x-2 text-gray-700"
           >
-            <span class="w-4 h-4 bg-gray-300 rounded"></span>
+            <span class="w-4 h-4 bg-blue-500 rounded"></span>
             <span>Transactions</span>
           </a>
           <a
             href="./poche.html"
-            class="flex items-center space-x-2 text-blue-600"
+            class="flex items-center space-x-2 text-gray-700"
           >
             <span class="w-4 h-4 bg-blue-500 rounded"></span>
             <span>Gestion des Poches</span>
           </a>
           <a href="#" class="flex items-center space-x-2 text-gray-700">
-            <span class="w-4 h-4 bg-gray-300 rounded"></span>
+            <span class="w-4 h-4 bg-blue-500 rounded"></span>
             <span>Statistics</span>
           </a>
         </nav>
 
         <button class="mt-auto text-red-500 flex items-center space-x-2 w-full">
-          <span>Logout</span>
+          <span>Deconnexion</span>
         </button>
       </aside>
-
-      <!-- Overlay for Mobile Sidebar -->
-      <div
-        id="overlay"
-        class="fixed inset-0 hidden bg-black bg-opacity-50 lg:hidden"
-        onclick="toggleSidebar()"
-      ></div>
 
       <!-- Main Content -->
       <main class="flex-1 p-6 lg:ml-64">
@@ -86,7 +79,7 @@
         >
           <input
             type="text"
-            placeholder="Search your transaction here"
+            placeholder="Rechercher"
             class="w-full lg:w-1/3 p-2 rounded-lg border border-gray-300"
           />
           <div class="flex items-center space-x-4 mt-4 lg:mt-0">
@@ -108,31 +101,31 @@
           <!-- Balance Card -->
           <div class="bg-white p-4 rounded-lg shadow">
             <div class="flex justify-between items-center">
-              <h3 class="text-gray-500">My Balance</h3>
+              <h3 class="text-gray-500">Mon Solde</h3>
               <span class="bg-yellow-100 p-2 rounded-full">💰</span>
             </div>
             <p class="text-3xl font-semibold mt-2">786,351.623</p>
-            <p class="text-green-500 text-sm">+12% compared to last month</p>
+            <p class="text-green-500 text-sm">+12% comparee au mois dernier</p>
           </div>
 
           <!-- Income Card -->
           <div class="bg-white p-4 rounded-lg shadow">
             <div class="flex justify-between items-center">
-              <h3 class="text-gray-500">Monthly Income</h3>
+              <h3 class="text-gray-500">Revenus Mensuels</h3>
               <span class="bg-green-100 p-2 rounded-full">📈</span>
             </div>
             <p class="text-3xl font-semibold mt-2">49,768.920</p>
-            <p class="text-green-500 text-sm">+12% compared to last month</p>
+            <p class="text-green-500 text-sm">+12% comparee au mois dernier</p>
           </div>
 
           <!-- Expenses Card -->
           <div class="bg-white p-4 rounded-lg shadow">
             <div class="flex justify-between items-center">
-              <h3 class="text-gray-500">Monthly Expenses</h3>
+              <h3 class="text-gray-500">Depenses Mensuels</h3>
               <span class="bg-red-100 p-2 rounded-full">📉</span>
             </div>
             <p class="text-3xl font-semibold mt-2">24,679.852</p>
-            <p class="text-red-500 text-sm">-12% compared to last month</p>
+            <p class="text-red-500 text-sm">-12% comparee au mois dernier</p>
           </div>
         </div>
 
@@ -151,12 +144,12 @@
             <div class="bg-white p-6 rounded-lg shadow overflow-x-auto">
               <div class="flex justify-between items-center">
                 <h3 class="text-gray-700 font-semibold text-lg">
-                  Transaction History
+                  Historique de transactions
                 </h3>
                 <div>
                   <select class="border rounded-lg p-2">
-                    <option>Monthly</option>
-                    <option>Yearly</option>
+                    <option>Mesuelles</option>
+                    <option>Annuelles</option>
                   </select>
                 </div>
               </div>
@@ -164,11 +157,12 @@
               <table class="w-full mt-4 min-w-[600px]">
                 <thead>
                   <tr class="text-gray-500">
-                    <th class="text-left p-3">Name</th>
+                    <th class="text-left p-3">Nom</th>
                     <th class="text-left p-3">Transaction ID</th>
                     <th class="text-left p-3">Date</th>
+                    <th class="text-left p-3">Montant</th>
+                    <th class="text-left p-3">Type</th>
                     <th class="text-left p-3">Status</th>
-                    <th class="text-left p-3">Amount</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -184,12 +178,13 @@
                     </td>
                     <td class="p-3">FVB-092412</td>
                     <td class="p-3">Sep 29, 2023</td>
+                    <td class="p-3">$12,200</td>
+                    <td class="p-3">Gain</td>
                     <td class="p-3">
                       <span class="text-green-500 bg-green-100 p-2 rounded-full"
-                        >● Completed</span
+                        >● Succes</span
                       >
                     </td>
-                    <td class="p-3">$12,200</td>
                   </tr>
 
                   <!-- Row 2 -->
@@ -204,12 +199,13 @@
                     </td>
                     <td class="p-3">DEW-076213</td>
                     <td class="p-3">Sep 16, 2023</td>
+                    <td class="p-3">$6,640</td>
+                    <td class="p-3">Depense</td>
                     <td class="p-3">
                       <span class="text-red-500 bg-red-100 p-2 rounded-full"
-                        >● Pending</span
+                        >● En attente</span
                       >
                     </td>
-                    <td class="p-3">$6,640</td>
                   </tr>
 
                   <!-- Row 3 -->
@@ -224,12 +220,13 @@
                     </td>
                     <td class="p-3">KMN-072309</td>
                     <td class="p-3">Oct 23, 2023</td>
+                    <td class="p-3">$23,450</td>
+                    <td class="p-3">Depense</td>
                     <td class="p-3">
                       <span class="text-green-500 bg-green-100 p-2 rounded-full"
-                        >● Completed</span
+                        >● Succes</span
                       >
                     </td>
-                    <td class="p-3">$23,450</td>
                   </tr>
                 </tbody>
               </table>
@@ -238,26 +235,9 @@
 
           <!-- Right Column (My Cards, Quick Transactions, Savings) -->
           <div class="space-y-4">
-            <!-- My Cards -->
-            <!--
-            <div class="bg-white p-4 rounded-lg shadow">
-              <h3 class="text-gray-700">My Cards</h3>
-              <div class="mt-4">
-                <div class="bg-blue-500 p-4 rounded-lg text-white">
-                  <h4 class="text-xl">Visa - 1234</h4>
-                  <p class="text-sm">Exp: 12/25</p>
-                </div>
-                <div class="bg-green-500 p-4 rounded-lg text-white mt-4">
-                  <h4 class="text-xl">Mastercard - 5678</h4>
-                  <p class="text-sm">Exp: 11/24</p>
-                </div>
-              </div>
-            </div>
-            -->
-
             <div class="my-cards-container bg-white p-6 rounded-lg shadow-md">
-              <h2 class="text-xl font-semibold mb-4">My cards</h2>
-              <p class="text-gray-600 mb-4">Add and update your card detail</p>
+              <h2 class="text-xl font-semibold mb-4">Mes Cartes</h2>
+              <p class="text-gray-600 mb-4">Gerer vos cartes</p>
               <div class="card-wrapper">
                 <div
                   class="card bg-gradient-to-r from-blue-500 to-purple-500 p-4 rounded-lg shadow-lg"
@@ -284,11 +264,11 @@
                     </div>
                   </div>
                   <div class="text-white text-2xl mt-2">
-                    3234 8678 4234 7628
+                    **** **** **** 7628
                   </div>
                   <div class="flex justify-between mt-4">
-                    <span>Card Holder name</span>
-                    <span>Expiry date</span>
+                    <span>Titulaire</span>
+                    <span>Date d'expiration</span>
                   </div>
                   <div class="flex justify-between text-white">
                     <span>Lee Seaba</span>
@@ -317,7 +297,7 @@
                         d="M12 4v16m8-8H4"
                       />
                     </svg>
-                    Add Card
+                    Ajouter une carte
                   </span>
                 </button>
               </div>
@@ -325,49 +305,32 @@
 
             <!-- Quick Transactions -->
             <div class="bg-white p-4 rounded-lg shadow">
-              <h3 class="text-gray-700">Quick Transactions</h3>
+              <h3 class="text-gray-700">Transactions Rapide</h3>
               <div class="mt-4">
                 <button
                   class="w-full bg-blue-600 text-white p-2 rounded-lg"
                   onclick="openPopup()"
                 >
-                  Add Transaction
+                  Ajouter une transaction
                 </button>
               </div>
             </div>
-
-            <!-- Savings Goal -->
-            <!--
-            <div class="bg-white p-4 rounded-lg shadow">
-              <h3 class="text-gray-700">Savings Goal</h3>
-              <div class="mt-4">
-                <p class="text-gray-500">Your savings goal:</p>
-                <p class="text-3xl font-semibold">$10,000</p>
-                <button
-                  class="w-full bg-green-600 text-white p-2 rounded-lg mt-4"
-                >
-                  Add Savings
-                </button>
-              </div>
-            </div>
-            -->
 
             <!-- Savings Section -->
             <div class="bg-white p-6 rounded-lg shadow">
-              <h3 class="text-gray-700 font-semibold text-lg">Savings</h3>
+              <h3 class="text-gray-700 font-semibold text-lg">Poches</h3>
 
-              <!-- Education Savings -->
               <div class="mt-4">
                 <div class="flex justify-between items-center">
                   <span class="font-medium text-gray-700">Education</span>
-                  <span class="text-sm text-gray-500">Target: $50,000</span>
+                  <span class="text-sm text-gray-500">Objectif: $50,000</span>
                 </div>
                 <div class="flex justify-between items-center mt-1">
                   <span class="text-blue-500 text-lg font-semibold"
                     >$25,000</span
                   >
                   <span class="text-sm text-gray-500"
-                    >Monthly savings: $500</span
+                    >Virement Mensuels: $500</span
                   >
                 </div>
                 <div class="w-full bg-gray-200 h-2 mt-2 rounded-full">
@@ -378,18 +341,17 @@
                 </div>
               </div>
 
-              <!-- Travelling Savings -->
               <div class="mt-4">
                 <div class="flex justify-between items-center">
-                  <span class="font-medium text-gray-700">Travelling</span>
-                  <span class="text-sm text-gray-500">Target: $40,000</span>
+                  <span class="font-medium text-gray-700">Voyage</span>
+                  <span class="text-sm text-gray-500">Objectif: $40,000</span>
                 </div>
                 <div class="flex justify-between items-center mt-1">
                   <span class="text-purple-500 text-lg font-semibold"
                     >$5,000</span
                   >
                   <span class="text-sm text-gray-500"
-                    >Monthly savings: $100</span
+                    >Virement Mensuels: $100</span
                   >
                 </div>
                 <div class="w-full bg-gray-200 h-2 mt-2 rounded-full">
@@ -400,18 +362,17 @@
                 </div>
               </div>
 
-              <!-- Emergency Fund -->
               <div class="mt-4">
                 <div class="flex justify-between items-center">
-                  <span class="font-medium text-gray-700">Emergency Fund</span>
-                  <span class="text-sm text-gray-500">Target: $35,000</span>
+                  <span class="font-medium text-gray-700">Fonds d'urgence</span>
+                  <span class="text-sm text-gray-500">Objectif: $35,000</span>
                 </div>
                 <div class="flex justify-between items-center mt-1">
                   <span class="text-red-500 text-lg font-semibold"
                     >$15,000</span
                   >
                   <span class="text-sm text-gray-500"
-                    >Monthly savings: $100</span
+                    >Virement Mensuels: $100</span
                   >
                 </div>
                 <div class="w-full bg-gray-200 h-2 mt-2 rounded-full">
@@ -431,7 +392,7 @@
           class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden"
         >
           <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 md:w-1/3">
-            <h2 class="text-lg font-semibold mb-4">Add Transaction</h2>
+            <h2 class="text-lg font-semibold mb-4">Ajouter une Transaction</h2>
             <form id="transactionForm">
               <div class="mb-4">
                 <label
@@ -679,12 +640,11 @@
       </main>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
       function toggleSidebar() {
         const sidebar = document.getElementById('sidebar')
-        const overlay = document.getElementById('overlay')
         sidebar.classList.toggle('-translate-x-full')
-        overlay.classList.toggle('hidden')
       }
 
       // Fonction pour ouvrir le popup
@@ -725,13 +685,12 @@
       document
         .getElementById('transactionForm')
         .addEventListener('submit', function (e) {
-          e.preventDefault() // Empêche l'envoi du formulaire
-          // Ajoutez ici la logique pour traiter la transaction
+          e.preventDefault()
+          //TODO Ajoutez ici la logique pour traiter la transaction
           alert('Transaction ajoutée avec succès !')
-          closePopup() // Ferme le popup après ajout
+          closePopup()
         })
 
-      // Fonction pour ouvrir le popup de la carte
       function openCardPopup() {
         document.getElementById('cardPopup').classList.remove('hidden')
       }
@@ -745,11 +704,63 @@
       document
         .getElementById('cardForm')
         .addEventListener('submit', function (e) {
-          e.preventDefault() // Empêche l'envoi du formulaire
-          // Ajoutez ici la logique pour traiter l'ajout de la carte
+          e.preventDefault()
           alert('Carte ajoutée avec succès !')
-          closeCardPopup() // Ferme le popup après ajout
+          closeCardPopup()
         })
+
+      // Configuration du graphique de flux de trésorerie
+      const ctx = document.getElementById('cashFlowChart').getContext('2d')
+      const cashFlowChart = new Chart(ctx, {
+        type: 'bar', // Type de graphique : barre
+        data: {
+          labels: [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec',
+          ],
+          datasets: [
+            {
+              label: 'Revenus',
+              data: [
+                5000, 7000, 8000, 5600, 9000, 10000, 7500, 8200, 9100, 9700,
+                8800, 10500,
+              ],
+              backgroundColor: 'rgba(75, 192, 192, 0.6)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1,
+            },
+            {
+              label: 'Dépenses',
+              data: [
+                3000, 4500, 6000, 3500, 7000, 6500, 4000, 6000, 7000, 7800,
+                6500, 8000,
+              ],
+              backgroundColor: 'rgba(255, 99, 132, 0.6)',
+              borderColor: 'rgba(255, 99, 132, 1)',
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+          responsive: true,
+          maintainAspectRatio: false,
+        },
+      })
     </script>
   </body>
 </html>
