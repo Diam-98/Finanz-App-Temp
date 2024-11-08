@@ -107,6 +107,152 @@
         <!-- Page Heading -->
         <div class="flex justify-between items-center mb-6">
           <h1 class="text-2xl font-bold">Transactions</h1>
+          <button
+            class="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700"
+            onclick="openPopup()"
+          >
+            Ajouter une transaction
+          </button>
+        </div>
+
+        <!-- Transaction Popup -->
+        <div
+          id="transactionPopup"
+          class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden"
+        >
+          <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 md:w-1/3">
+            <h2 class="text-lg font-semibold mb-4">Ajouter une Transaction</h2>
+            <form id="transactionForm">
+              <div class="mb-4">
+                <label
+                  for="transactionType"
+                  class="block text-sm font-medium text-gray-700"
+                  >Type de transaction</label
+                >
+                <select
+                  id="transactionType"
+                  name="transactionType"
+                  required
+                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                >
+                  <option value="">Sélectionnez un type</option>
+                  <option value="depense">Dépense</option>
+                  <option value="revenu">Revenu</option>
+                  <option value="transfert">Transfert</option>
+                </select>
+              </div>
+
+              <div class="mb-4">
+                <label
+                  for="transactionAmount"
+                  class="block text-sm font-medium text-gray-700"
+                  >Montant de la dépense</label
+                >
+                <input
+                  type="number"
+                  id="transactionAmount"
+                  name="transactionAmount"
+                  min="0"
+                  required
+                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+              </div>
+
+              <div class="mb-4">
+                <label
+                  for="account"
+                  class="block text-sm font-medium text-gray-700"
+                  >Depuis : Sélectionnez un compte</label
+                >
+                <select
+                  id="account"
+                  name="account"
+                  required
+                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                >
+                  <option value="">Sélectionnez un compte</option>
+                  <option value="compte1">Compte 1</option>
+                  <option value="compte2">Compte 2</option>
+                  <!-- Ajoutez d'autres comptes ici -->
+                </select>
+              </div>
+
+              <div class="mb-4">
+                <label
+                  for="transactionName"
+                  class="block text-sm font-medium text-gray-700"
+                  >Nom de la transaction</label
+                >
+                <input
+                  type="text"
+                  id="transactionName"
+                  name="transactionName"
+                  required
+                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+              </div>
+              <div class="mb-4">
+                <label
+                  for="transactionID"
+                  class="block text-sm font-medium text-gray-700"
+                  >ID de la transaction</label
+                >
+                <input
+                  type="text"
+                  id="transactionID"
+                  name="transactionID"
+                  required
+                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+              </div>
+              <div class="mb-4">
+                <label
+                  for="transactionDate"
+                  class="block text-sm font-medium text-gray-700"
+                  >Date</label
+                >
+                <input
+                  type="date"
+                  id="transactionDate"
+                  name="transactionDate"
+                  required
+                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+              </div>
+              <div class="mb-4">
+                <label
+                  for="transactionStatus"
+                  class="block text-sm font-medium text-gray-700"
+                  >Statut</label
+                >
+                <select
+                  id="transactionStatus"
+                  name="transactionStatus"
+                  required
+                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                >
+                  <option value="Completed">Complété</option>
+                  <option value="Pending">En attente</option>
+                </select>
+              </div>
+
+              <div class="flex justify-between">
+                <button
+                  type="button"
+                  class="bg-red-500 text-white py-2 px-4 rounded"
+                  onclick="closePopup()"
+                >
+                  Annuler
+                </button>
+                <button
+                  type="submit"
+                  class="bg-blue-600 text-white py-2 px-4 rounded"
+                >
+                  Ajouter la transaction
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
 
         <!-- Transactions Table -->
@@ -273,15 +419,32 @@
     </div>
 
     <script>
-      function toggleSidebar() {
-        const sidebar = document.getElementById('sidebar')
-        const overlay = document.getElementById('overlay')
-        const isOpen = sidebar.classList.contains('translate-x-0')
-
-        sidebar.classList.toggle('-translate-x-full', isOpen)
-        sidebar.classList.toggle('translate-x-0', !isOpen)
-        overlay.classList.toggle('hidden', isOpen)
+      // Fonction pour ouvrir le popup
+      function openPopup() {
+        document.getElementById('transactionPopup').classList.remove('hidden')
       }
+
+      // Fonction pour fermer le popup
+      function closePopup() {
+        document.getElementById('transactionPopup').classList.add('hidden')
+      }
+
+      // Afficher les champs en fonction du type de transaction
+      document
+        .getElementById('transactionType')
+        .addEventListener('change', function () {
+          const selectedType = this.value
+        })
+
+      // Ajouter un événement au formulaire
+      document
+        .getElementById('transactionForm')
+        .addEventListener('submit', function (e) {
+          e.preventDefault()
+          //TODO Ajoutez ici la logique pour traiter la transaction
+          alert('Transaction ajoutée avec succès !')
+          closePopup()
+        })
     </script>
   </body>
 </html>

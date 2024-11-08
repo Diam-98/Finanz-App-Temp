@@ -413,8 +413,7 @@
                 </select>
               </div>
 
-              <!-- Champs pour Dépense -->
-              <div id="depenseFields" class="transaction-fields mb-4 hidden">
+              <div class="mb-4">
                 <label
                   for="transactionAmount"
                   class="block text-sm font-medium text-gray-700"
@@ -424,45 +423,17 @@
                   type="number"
                   id="transactionAmount"
                   name="transactionAmount"
+                  min="0"
                   required
                   class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
                 />
               </div>
 
-              <!-- Champs pour Revenu -->
-              <div id="revenuFields" class="transaction-fields mb-4 hidden">
-                <label
-                  for="transactionAmount"
-                  class="block text-sm font-medium text-gray-700"
-                  >Montant du revenu</label
-                >
-                <input
-                  type="number"
-                  id="transactionAmount"
-                  name="transactionAmount"
-                  required
-                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                />
-              </div>
-
-              <!-- Champs pour Transfert -->
-              <div id="transfertFields" class="transaction-fields mb-4 hidden">
-                <label
-                  for="transactionAmount"
-                  class="block text-sm font-medium text-gray-700"
-                  >Montant du transfert</label
-                >
-                <input
-                  type="number"
-                  id="transactionAmount"
-                  name="transactionAmount"
-                  required
-                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                />
+              <div class="mb-4">
                 <label
                   for="account"
                   class="block text-sm font-medium text-gray-700"
-                  >Sélectionnez un compte</label
+                  >Depuis : Sélectionnez un compte</label
                 >
                 <select
                   id="account"
@@ -533,7 +504,6 @@
                 >
                   <option value="Completed">Complété</option>
                   <option value="Pending">En attente</option>
-                  <option value="Failed">Échoué</option>
                 </select>
               </div>
 
@@ -662,23 +632,6 @@
         .getElementById('transactionType')
         .addEventListener('change', function () {
           const selectedType = this.value
-          const depenseFields = document.getElementById('depenseFields')
-          const revenuFields = document.getElementById('revenuFields')
-          const transfertFields = document.getElementById('transfertFields')
-
-          // Masquer tous les champs d'transaction
-          depenseFields.classList.add('hidden')
-          revenuFields.classList.add('hidden')
-          transfertFields.classList.add('hidden')
-
-          // Afficher les champs correspondant au type sélectionné
-          if (selectedType === 'depense') {
-            depenseFields.classList.remove('hidden')
-          } else if (selectedType === 'revenu') {
-            revenuFields.classList.remove('hidden')
-          } else if (selectedType === 'transfert') {
-            transfertFields.classList.remove('hidden')
-          }
         })
 
       // Ajouter un événement au formulaire
