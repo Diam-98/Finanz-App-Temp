@@ -290,6 +290,9 @@
                 >
                   Status
                 </th>
+                <th
+                  class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                ></th>
               </tr>
             </thead>
             <tbody>
@@ -331,6 +334,24 @@
                     Completed
                   </span>
                 </td>
+                <td class="px-6 py-4 border-b border-gray-200 text-sm">
+                  <button
+                    class="px-3 py-1 text-sm font-semibold text-green-700 bg-green-200 rounded-full"
+                    onclick="openViewPopup()"
+                  >
+                    👁️
+                  </button>
+                  <button
+                    class="px-3 py-1 text-sm font-semibold text-green-700 bg-blue-200 rounded-full"
+                  >
+                    📝
+                  </button>
+                  <button
+                    class="px-3 py-1 text-sm font-semibold text-green-700 bg-red-200 rounded-full"
+                  >
+                    🗑️
+                  </button>
+                </td>
               </tr>
 
               <!-- Transaction Row 2 -->
@@ -370,6 +391,24 @@
                   >
                     Pending
                   </span>
+                </td>
+                <td class="px-6 py-4 border-b border-gray-200 text-sm">
+                  <button
+                    class="px-3 py-1 text-sm font-semibold text-green-700 bg-green-200 rounded-full"
+                    onclick="openViewPopup()"
+                  >
+                    👁️
+                  </button>
+                  <button
+                    class="px-3 py-1 text-sm font-semibold text-green-700 bg-blue-200 rounded-full"
+                  >
+                    📝
+                  </button>
+                  <button
+                    class="px-3 py-1 text-sm font-semibold text-green-700 bg-red-200 rounded-full"
+                  >
+                    🗑️
+                  </button>
                 </td>
               </tr>
 
@@ -411,9 +450,83 @@
                     Failed
                   </span>
                 </td>
+                <td class="px-6 py-4 border-b border-gray-200 text-sm">
+                  <button
+                    class="px-3 py-1 text-sm font-semibold text-green-700 bg-green-200 rounded-full"
+                    onclick="openViewPopup()"
+                  >
+                    👁️
+                  </button>
+                  <button
+                    class="px-3 py-1 text-sm font-semibold text-green-700 bg-blue-200 rounded-full"
+                  >
+                    📝
+                  </button>
+                  <button
+                    class="px-3 py-1 text-sm font-semibold text-green-700 bg-red-200 rounded-full"
+                  >
+                    🗑️
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>
+        </div>
+
+        <!-- Voir Transaction Popup -->
+        <div
+          id="viewTransactionPopup"
+          class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden"
+        >
+          <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 md:w-1/3">
+            <h2 class="text-lg font-semibold mb-4">
+              Détails de la Transaction
+            </h2>
+            <div class="mb-4">
+              <p>
+                <strong>Date:</strong>
+                <span id="viewTransactionDate">03/15/2024</span>
+              </p>
+            </div>
+            <div class="mb-4">
+              <p>
+                <strong>Description:</strong>
+                <span id="viewTransactionDescription">Amazon Purchase</span>
+              </p>
+            </div>
+            <div class="mb-4">
+              <p>
+                <strong>Expéditeur:</strong>
+                <span id="viewTransactionSender">Compte A</span>
+              </p>
+            </div>
+            <div class="mb-4">
+              <p>
+                <strong>Destinataire:</strong>
+                <span id="viewTransactionRecipient">Compte B</span>
+              </p>
+            </div>
+            <div class="mb-4">
+              <p>
+                <strong>Montant:</strong>
+                <span id="viewTransactionAmount">$120.99</span>
+              </p>
+            </div>
+            <div class="mb-4">
+              <p>
+                <strong>Statut:</strong>
+                <span id="viewTransactionStatus">Complété</span>
+              </p>
+            </div>
+            <div class="flex justify-end">
+              <button
+                class="bg-red-500 text-white py-2 px-4 rounded"
+                onclick="closeViewPopup()"
+              >
+                Fermer
+              </button>
+            </div>
+          </div>
         </div>
       </main>
     </div>
@@ -445,6 +558,18 @@
           alert('Transaction ajoutée avec succès !')
           closePopup()
         })
+
+      // Fonction pour ouvrir le popup de visualisation
+      function openViewPopup() {
+        document
+          .getElementById('viewTransactionPopup')
+          .classList.remove('hidden')
+      }
+
+      // Fonction pour fermer le popup de visualisation
+      function closeViewPopup() {
+        document.getElementById('viewTransactionPopup').classList.add('hidden')
+      }
     </script>
   </body>
 </html>
