@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Finance App Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body
+    class="bg-gray-100 h-screen p-6"
+    style="
+      background: url('./bg.jpg');
+      background-repeat: no-repeat;
+      background-size: auto;
+    "
+  >
+    <div class="w-full h-full">
+      <div class="w-full h-full bg-[#00000093] flex flex-col md:flex-row items-center p-6">
+        <div class="w-full md:w-1/2 p-4">
+          <h1 class="text-center text-2xl text-white">Une application pour tracker la gestion de vos finances. Vos cartes, poches, depenses, revenues... Bref toutes vos transaction</h1>
+        </div>
+        <div class="w-full md:w-1/2 h-full flex flex-col gap-4 items-center justify-center md:border-l-2 ">
+            <span class="text-white">Se connecter</span>
+            <form class="flex flex-col gap-5">
+              <div class="w-full">
+                <input
+                  class="w-full py-2 px-3 outline-0 border-0"
+                  type="email"
+                  name="email"
+                  placeholder="Votre email"
+                />
+              </div>
+              <div class="w-full">
+                <input
+                  class="w-full py-2 px-3 outline-0 border-0"
+                  type="password"
+                  name="password"
+                  placeholder="Votre mot de passe"
+                />
+              </div>
+              <div class="w-full">
+                <button type="submit" class="w-full bg-blue-600 text-white px-3 py-2">Se connecter</button>
+              </div>
+            </form>
+            <span class="text-white">
+                Vous n'avez pas de compte, <a class="text-blue-800" href="./register.html">S'inscire</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
