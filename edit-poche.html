@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cards</title>
+    <title>Gestion des Poches</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
@@ -97,79 +97,54 @@
           </div>
         </div>
 
-        <!-- Page Heading -->
-        <div class="flex justify-between items-center mb-6">
-          <h1 class="text-2xl font-bold">Mes Cartes</h1>
-          <a
-            href="./edit-card.html"
-            class="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700"
-          >
-            Ajouter une carte
-          </a>
+        <div
+          class="flex flex-col lg:flex-row justify-between items-center mb-6"
+        >
+          <h1 class="text-2xl font-bold">Gestion des Poches</h1>
+          <button class="mt-4 lg:mt-0 p-2 bg-blue-600 text-white rounded-lg">
+            Annuler
+          </button>
         </div>
 
-        <!-- Cards Section -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Card Item 1 -->
-          <div class="bg-white rounded-lg shadow-lg p-6">
-            <h2 class="text-lg font-semibold mb-4">Visa Platinum</h2>
-            <div class="flex items-center justify-between">
-              <div>
-                <p class="text-gray-600">**** **** **** 1234</p>
-                <p class="text-sm text-gray-400">Expires: 12/25</p>
-              </div>
-              <img src="./card-puce.png" alt="Visa" class="h-8" />
-            </div>
-            <div class="mt-4 flex justify-end space-x-2">
-              <button
-                class="text-blue-600 hover:text-blue-700"
-                aria-label="Edit Card"
-              >
-                Modifier
-              </button>
-              <button class="text-red-600 hover:text-red-700">Supprimer</button>
-            </div>
-          </div>
-
-          <!-- Card Item 2 -->
-          <div class="bg-white rounded-lg shadow-lg p-6">
-            <h2 class="text-lg font-semibold mb-4">Mastercard Gold</h2>
-            <div class="flex items-center justify-between">
-              <div>
-                <p class="text-gray-600">**** **** **** 5678</p>
-                <p class="text-sm text-gray-400">Expires: 08/24</p>
-              </div>
-              <img src="./card-puce.png" alt="Mastercard" class="h-8" />
-            </div>
-            <div class="mt-4 flex justify-end space-x-2">
-              <button class="text-blue-600 hover:text-blue-700">
-                Modifier
-              </button>
-              <button class="text-red-600 hover:text-red-700">Supprimer</button>
-            </div>
-          </div>
-
-          <!-- Card Item 3 -->
-          <div class="bg-white rounded-lg shadow-lg p-6">
-            <h2 class="text-lg font-semibold mb-4">American Express</h2>
-            <div class="flex items-center justify-between">
-              <div>
-                <p class="text-gray-600">**** **** **** 9012</p>
-                <p class="text-sm text-gray-400">Expires: 05/26</p>
-              </div>
-              <img src="./card-puce.png" alt="Amex" class="h-8" />
-            </div>
-            <div class="mt-4 flex justify-end space-x-2">
-              <button class="text-blue-600 hover:text-blue-700">
-                Modifier
-              </button>
-              <button class="text-red-600 hover:text-red-700">Supprimer</button>
-            </div>
+        <div id="addPocketModal" class="w-full">
+          <div class="bg-white rounded-lg p-6">
+            <h2 class="text-xl font-bold mb-4">Ajouter une Poche</h2>
+            <input
+              type="text"
+              placeholder="Nom de la Poche"
+              class="w-full p-2 border border-gray-300 rounded mb-4"
+            />
+            <input
+              type="date"
+              placeholder="Echeance"
+              class="w-full p-2 border border-gray-300 rounded mb-4"
+            />
+            <input
+              type="number"
+              placeholder="Objectif min $1000"
+              min="1000"
+              class="w-full p-2 border border-gray-300 rounded mb-4"
+            />
+            <select
+              class="w-full p-2 border border-gray-300 rounded mb-4"
+              id="blocked"
+            >
+              <option value="0">Bloque</option>
+              <option value="1">Ouvert</option>
+            </select>
+            <button class="w-full bg-blue-600 text-white p-2 rounded">
+              Créer
+            </button>
           </div>
         </div>
       </main>
     </div>
 
-    <script></script>
+    <script>
+      function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar')
+        sidebar.classList.toggle('-translate-x-full')
+      }
+    </script>
   </body>
 </html>
