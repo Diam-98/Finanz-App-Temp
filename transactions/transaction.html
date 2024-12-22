@@ -87,7 +87,7 @@
           <input
             type="text"
             placeholder="Rechercher"
-            class="w-full lg:w-1/3 p-2 rounded-lg border border-gray-300"
+            class="w-full lg:w-1/3 bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
           />
           <div class="flex items-center space-x-4 mt-4 lg:mt-0">
             <div class="flex items-center space-x-2">
@@ -107,12 +107,12 @@
         <!-- Page Heading -->
         <div class="flex justify-between items-center mb-6">
           <h1 class="text-2xl font-bold">Transactions</h1>
-          <button
-            class="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700"
-            onclick="openPopup()"
+          <a
+            href="./edit-transaction.html"
+            class="rounded-full bg-gray-700 text-white font-bold py-2 px-4 hover:bg-gray-600"
           >
             Ajouter une transaction
-          </button>
+          </a>
         </div>
 
         <!-- Transaction Popup -->

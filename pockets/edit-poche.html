@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cards</title>
+    <title>Gestion des Poches</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
@@ -97,86 +97,79 @@
           </div>
         </div>
 
-        <!-- Page Heading -->
-        <div class="flex justify-between items-center mb-6">
-          <h1 class="text-2xl font-bold">Mes Cartes</h1>
-          <a
-            href="./edit-card.html"
-            class="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700"
+        <div
+          class="flex flex-col lg:flex-row justify-between items-center mb-6"
+        >
+          <h1 class="text-2xl font-bold">Gestion des Poches</h1>
+          <button
+            class="bg-gray-700 text-white font-bold py-2 px-4 rounded hover:bg-gray-600"
           >
             Annuler
-          </a>
+          </button>
         </div>
 
-        <div id="cardPopup" class="w-full">
-          <div class="bg-white p-6 rounded-lg shadow-lg">
-            <h2 class="text-lg font-semibold mb-4">
-              Ajouter une carte bancaire
-            </h2>
-            <form id="cardForm">
-              <div class="mb-4">
-                <label
-                  for="cardHolder"
-                  class="block text-sm font-medium text-gray-700"
-                  >Titulaire de la carte</label
-                >
-                <input
-                  type="text"
-                  id="cardHolder"
-                  name="cardHolder"
-                  required
-                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                />
-              </div>
-              <div class="mb-4">
-                <label
-                  for="cardNumber"
-                  class="block text-sm font-medium text-gray-700"
-                  >Numéro de la carte</label
-                >
-                <input
-                  type="text"
-                  id="cardNumber"
-                  name="cardNumber"
-                  required
-                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                />
-              </div>
-              <div class="mb-4">
-                <label
-                  for="expiryDate"
-                  class="block text-sm font-medium text-gray-700"
-                  >Date d'expiration</label
-                >
-                <input
-                  type="month"
-                  id="expiryDate"
-                  name="expiryDate"
-                  required
-                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                />
-              </div>
-              <div class="mb-4">
-                <label for="cvv" class="block text-sm font-medium text-gray-700"
-                  >CVV</label
-                >
-                <input
-                  type="text"
-                  id="cvv"
-                  name="cvv"
-                  required
-                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                />
-              </div>
-              <button class="w-full bg-blue-600 text-white p-2 rounded">
+        <div id="addPocketModal" class="w-full">
+          <div class="bg-white rounded-lg p-6">
+            <h2 class="text-xl font-bold mb-4">Ajouter une Poche</h2>
+            <div class="mt-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2"
+                >Nom de la poche</label
+              >
+              <input
+                class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+                type="text"
+              />
+            </div>
+
+            <div class="mt-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2"
+                >Echeance</label
+              >
+              <input
+                class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+                type="date"
+              />
+            </div>
+
+            <div class="mt-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2"
+                >Objectif min $500</label
+              >
+              <input
+                class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+                type="number"
+              />
+            </div>
+
+            <div class="mt-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2"
+                >Statut</label
+              >
+              <select
+                class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+                id="blocked"
+              >
+                <option value="0">Bloque</option>
+                <option value="1">Ouvert</option>
+              </select>
+            </div>
+            <div class="mt-8 text-right">
+              <button
+                class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600"
+              >
                 Créer
               </button>
-            </form>
+            </div>
           </div>
         </div>
       </main>
     </div>
 
-    <script></script>
+    <script>
+      function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar')
+        sidebar.classList.toggle('-translate-x-full')
+      }
+    </script>
   </body>
 </html>

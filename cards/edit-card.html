@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gestion des Poches</title>
+    <title>Cards</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
@@ -97,54 +97,75 @@
           </div>
         </div>
 
-        <div
-          class="flex flex-col lg:flex-row justify-between items-center mb-6"
-        >
-          <h1 class="text-2xl font-bold">Gestion des Poches</h1>
-          <button class="mt-4 lg:mt-0 p-2 bg-blue-600 text-white rounded-lg">
+        <!-- Page Heading -->
+        <div class="flex justify-between items-center mb-6">
+          <h1 class="text-2xl font-bold">Gestion des cartes</h1>
+          <a
+            href="./edit-card.html"
+            class="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700"
+          >
             Annuler
-          </button>
+          </a>
         </div>
 
-        <div id="addPocketModal" class="w-full">
-          <div class="bg-white rounded-lg p-6">
-            <h2 class="text-xl font-bold mb-4">Ajouter une Poche</h2>
-            <input
-              type="text"
-              placeholder="Nom de la Poche"
-              class="w-full p-2 border border-gray-300 rounded mb-4"
-            />
-            <input
-              type="date"
-              placeholder="Echeance"
-              class="w-full p-2 border border-gray-300 rounded mb-4"
-            />
-            <input
-              type="number"
-              placeholder="Objectif min $1000"
-              min="1000"
-              class="w-full p-2 border border-gray-300 rounded mb-4"
-            />
-            <select
-              class="w-full p-2 border border-gray-300 rounded mb-4"
-              id="blocked"
-            >
-              <option value="0">Bloque</option>
-              <option value="1">Ouvert</option>
-            </select>
-            <button class="w-full bg-blue-600 text-white p-2 rounded">
-              Créer
-            </button>
+        <div class="w-full">
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-lg font-semibold mb-4">
+              Ajouter une carte bancaire
+            </h2>
+            <form id="cardForm">
+              <div class="mt-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2"
+                  >Nom sur la carte</label
+                >
+                <input
+                  class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+                  type="text"
+                />
+              </div>
+              <div class="mt-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2"
+                  >Numéro de la carte</label
+                >
+                <input
+                  class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+                  type="text"
+                />
+              </div>
+
+              <div class="mt-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2"
+                  >Date d'expiration</label
+                >
+                <input
+                  class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+                  type="date"
+                />
+              </div>
+
+              <div class="mt-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2"
+                  >CVV</label
+                >
+                <input
+                  class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+                  type="text"
+                />
+              </div>
+
+              <div class="mt-8 text-right">
+                <button
+                  class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600"
+                >
+                  Créer
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </main>
     </div>
 
-    <script>
-      function toggleSidebar() {
-        const sidebar = document.getElementById('sidebar')
-        sidebar.classList.toggle('-translate-x-full')
-      }
-    </script>
+    <script></script>
   </body>
 </html>
