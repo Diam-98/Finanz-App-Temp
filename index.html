@@ -32,32 +32,39 @@
             <span>Dashboard</span>
           </a>
           <a
-            href="./card.html"
+            href="./cards/card.html"
             class="flex items-center space-x-2 text-gray-700"
           >
             💳
             <span>Mes Cartes</span>
           </a>
           <a
-            href="./transaction.html"
+            href="./transactions/transaction.html"
             class="flex items-center space-x-2 text-gray-700"
           >
             💱
             <span>Transactions</span>
           </a>
           <a
-            href="./poche.html"
+            href="./pockets/poche.html"
             class="flex items-center space-x-2 text-gray-700"
           >
             💸
             <span>Gestion des Poches</span>
           </a>
           <a
-            href="./statistics.html"
+            href="./transactions/transaction.html"
             class="flex items-center space-x-2 text-gray-700"
           >
             📈
             <span>Statistics</span>
+          </a>
+          <a
+            href="./c-abonement/abonnement.html"
+            class="flex items-center space-x-2 text-gray-700"
+          >
+            🔗
+            <span>Mes Abonnements</span>
           </a>
         </nav>
 
@@ -83,10 +90,13 @@
           <input
             type="text"
             placeholder="Rechercher"
-            class="w-full lg:w-1/3 p-2 rounded-lg border border-gray-300"
+            class="w-full lg:w-1/3 bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
           />
           <div class="flex items-center space-x-4 mt-4 lg:mt-0">
-            <div class="flex items-center space-x-2">
+            <a
+              href="./profile/profile.html"
+              class="flex items-center space-x-2"
+            >
               <img
                 src="https://via.placeholder.com/40"
                 alt="Profile"
@@ -96,7 +106,10 @@
                 <h3 class="text-gray-800">Lee Seaba</h3>
                 <p class="text-gray-500 text-sm">seaba.lee@hello.mail</p>
               </div>
-            </div>
+            </a>
+            <span class="p-2 text-white text-sm bg-yellow-800 rounded-lg"
+              >Premium 👑</span
+            >
           </div>
         </div>
 
@@ -281,28 +294,12 @@
                 <!-- Ajoutez d'autres cartes de la même manière -->
               </div>
               <div class="add-card-btn mt-4">
-                <button
-                  class="bg-blue-600 text-white py-2 px-4 rounded-full"
-                  onclick="openCardPopup()"
+                <a
+                  href="./cards/edit-card.html"
+                  class="rounded-lg bg-gray-700 text-white font-bold py-2 px-4 w-full hover:bg-gray-600"
                 >
-                  <span class="flex items-center justify-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-5 w-5 mr-1"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 4v16m8-8H4"
-                      />
-                    </svg>
-                    Ajouter une carte
-                  </span>
-                </button>
+                  Ajouter une carte
+                </a>
               </div>
             </div>
 
@@ -310,12 +307,12 @@
             <div class="bg-white p-4 rounded-lg shadow">
               <h3 class="text-gray-700">Transactions Rapide</h3>
               <div class="mt-4">
-                <button
-                  class="w-full bg-blue-600 text-white p-2 rounded-lg"
-                  onclick="openPopup()"
+                <a
+                  href="./transactions/edit-transaction.html"
+                  class="rounded-lg bg-gray-700 text-white font-bold py-2 px-4 w-full hover:bg-gray-600"
                 >
                   Ajouter une transaction
-                </button>
+                </a>
               </div>
             </div>
 
@@ -388,228 +385,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Transaction Popup -->
-        <div
-          id="transactionPopup"
-          class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden"
-        >
-          <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 md:w-1/3">
-            <h2 class="text-lg font-semibold mb-4">Ajouter une Transaction</h2>
-            <form id="transactionForm">
-              <div class="mb-4">
-                <label
-                  for="transactionType"
-                  class="block text-sm font-medium text-gray-700"
-                  >Type de transaction</label
-                >
-                <select
-                  id="transactionType"
-                  name="transactionType"
-                  required
-                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                >
-                  <option value="">Sélectionnez un type</option>
-                  <option value="depense">Dépense</option>
-                  <option value="revenu">Revenu</option>
-                  <option value="transfert">Transfert</option>
-                </select>
-              </div>
-
-              <div class="mb-4">
-                <label
-                  for="transactionAmount"
-                  class="block text-sm font-medium text-gray-700"
-                  >Montant de la dépense</label
-                >
-                <input
-                  type="number"
-                  id="transactionAmount"
-                  name="transactionAmount"
-                  min="0"
-                  required
-                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                />
-              </div>
-
-              <div class="mb-4">
-                <label
-                  for="account"
-                  class="block text-sm font-medium text-gray-700"
-                  >Depuis : Sélectionnez un compte</label
-                >
-                <select
-                  id="account"
-                  name="account"
-                  required
-                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                >
-                  <option value="">Sélectionnez un compte</option>
-                  <option value="compte1">Compte 1</option>
-                  <option value="compte2">Compte 2</option>
-                  <!-- Ajoutez d'autres comptes ici -->
-                </select>
-              </div>
-
-              <div class="mb-4">
-                <label
-                  for="transactionName"
-                  class="block text-sm font-medium text-gray-700"
-                  >Nom de la transaction</label
-                >
-                <input
-                  type="text"
-                  id="transactionName"
-                  name="transactionName"
-                  required
-                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                />
-              </div>
-              <div class="mb-4">
-                <label
-                  for="transactionID"
-                  class="block text-sm font-medium text-gray-700"
-                  >ID de la transaction</label
-                >
-                <input
-                  type="text"
-                  id="transactionID"
-                  name="transactionID"
-                  required
-                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                />
-              </div>
-              <div class="mb-4">
-                <label
-                  for="transactionDate"
-                  class="block text-sm font-medium text-gray-700"
-                  >Date</label
-                >
-                <input
-                  type="date"
-                  id="transactionDate"
-                  name="transactionDate"
-                  required
-                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                />
-              </div>
-              <div class="mb-4">
-                <label
-                  for="transactionStatus"
-                  class="block text-sm font-medium text-gray-700"
-                  >Statut</label
-                >
-                <select
-                  id="transactionStatus"
-                  name="transactionStatus"
-                  required
-                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                >
-                  <option value="Completed">Complété</option>
-                  <option value="Pending">En attente</option>
-                </select>
-              </div>
-
-              <div class="flex justify-between">
-                <button
-                  type="button"
-                  class="bg-red-500 text-white py-2 px-4 rounded"
-                  onclick="closePopup()"
-                >
-                  Annuler
-                </button>
-                <button
-                  type="submit"
-                  class="bg-blue-600 text-white py-2 px-4 rounded"
-                >
-                  Ajouter la transaction
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-        <!-- Card Popup -->
-        <div
-          id="cardPopup"
-          class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden"
-        >
-          <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 md:w-1/3">
-            <h2 class="text-lg font-semibold mb-4">
-              Ajouter une carte bancaire
-            </h2>
-            <form id="cardForm">
-              <div class="mb-4">
-                <label
-                  for="cardHolder"
-                  class="block text-sm font-medium text-gray-700"
-                  >Titulaire de la carte</label
-                >
-                <input
-                  type="text"
-                  id="cardHolder"
-                  name="cardHolder"
-                  required
-                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                />
-              </div>
-              <div class="mb-4">
-                <label
-                  for="cardNumber"
-                  class="block text-sm font-medium text-gray-700"
-                  >Numéro de la carte</label
-                >
-                <input
-                  type="text"
-                  id="cardNumber"
-                  name="cardNumber"
-                  required
-                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                />
-              </div>
-              <div class="mb-4">
-                <label
-                  for="expiryDate"
-                  class="block text-sm font-medium text-gray-700"
-                  >Date d'expiration</label
-                >
-                <input
-                  type="month"
-                  id="expiryDate"
-                  name="expiryDate"
-                  required
-                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                />
-              </div>
-              <div class="mb-4">
-                <label for="cvv" class="block text-sm font-medium text-gray-700"
-                  >CVV</label
-                >
-                <input
-                  type="text"
-                  id="cvv"
-                  name="cvv"
-                  required
-                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                />
-              </div>
-              <div class="flex justify-between">
-                <button
-                  type="button"
-                  class="bg-red-500 text-white py-2 px-4 rounded"
-                  onclick="closeCardPopup()"
-                >
-                  Annuler
-                </button>
-                <button
-                  type="submit"
-                  class="bg-blue-600 text-white py-2 px-4 rounded"
-                >
-                  Ajouter la carte
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
       </main>
     </div>
 
@@ -619,51 +394,6 @@
         const sidebar = document.getElementById('sidebar')
         sidebar.classList.toggle('-translate-x-full')
       }
-
-      // Fonction pour ouvrir le popup
-      function openPopup() {
-        document.getElementById('transactionPopup').classList.remove('hidden')
-      }
-
-      // Fonction pour fermer le popup
-      function closePopup() {
-        document.getElementById('transactionPopup').classList.add('hidden')
-      }
-
-      // Afficher les champs en fonction du type de transaction
-      document
-        .getElementById('transactionType')
-        .addEventListener('change', function () {
-          const selectedType = this.value
-        })
-
-      // Ajouter un événement au formulaire
-      document
-        .getElementById('transactionForm')
-        .addEventListener('submit', function (e) {
-          e.preventDefault()
-          //TODO Ajoutez ici la logique pour traiter la transaction
-          alert('Transaction ajoutée avec succès !')
-          closePopup()
-        })
-
-      function openCardPopup() {
-        document.getElementById('cardPopup').classList.remove('hidden')
-      }
-
-      // Fonction pour fermer le popup de la carte
-      function closeCardPopup() {
-        document.getElementById('cardPopup').classList.add('hidden')
-      }
-
-      // Ajouter un événement au formulaire de carte
-      document
-        .getElementById('cardForm')
-        .addEventListener('submit', function (e) {
-          e.preventDefault()
-          alert('Carte ajoutée avec succès !')
-          closeCardPopup()
-        })
 
       // Configuration du graphique de flux de trésorerie
       const ctx = document.getElementById('cashFlowChart').getContext('2d')

@@ -80,7 +80,7 @@
           <input
             type="text"
             placeholder="Rechercher"
-            class="w-full lg:w-1/3 p-2 rounded-lg border border-gray-300"
+            class="w-full lg:w-1/3 bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
           />
           <div class="flex items-center space-x-4 mt-4 lg:mt-0">
             <div class="flex items-center space-x-2">
@@ -100,95 +100,12 @@
         <!-- Page Heading -->
         <div class="flex justify-between items-center mb-6">
           <h1 class="text-2xl font-bold">Mes Cartes</h1>
-          <button
-            class="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700"
-            onclick="openCardPopup()"
+          <a
+            href="./edit-card.html"
+            class="rounded-full bg-gray-700 text-white font-bold py-2 px-4 hover:bg-gray-600"
           >
             Ajouter une carte
-          </button>
-        </div>
-
-        <!-- Card Popup -->
-        <div
-          id="cardPopup"
-          class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden"
-        >
-          <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 md:w-1/3">
-            <h2 class="text-lg font-semibold mb-4">
-              Ajouter une carte bancaire
-            </h2>
-            <form id="cardForm">
-              <div class="mb-4">
-                <label
-                  for="cardHolder"
-                  class="block text-sm font-medium text-gray-700"
-                  >Titulaire de la carte</label
-                >
-                <input
-                  type="text"
-                  id="cardHolder"
-                  name="cardHolder"
-                  required
-                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                />
-              </div>
-              <div class="mb-4">
-                <label
-                  for="cardNumber"
-                  class="block text-sm font-medium text-gray-700"
-                  >Numéro de la carte</label
-                >
-                <input
-                  type="text"
-                  id="cardNumber"
-                  name="cardNumber"
-                  required
-                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                />
-              </div>
-              <div class="mb-4">
-                <label
-                  for="expiryDate"
-                  class="block text-sm font-medium text-gray-700"
-                  >Date d'expiration</label
-                >
-                <input
-                  type="month"
-                  id="expiryDate"
-                  name="expiryDate"
-                  required
-                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                />
-              </div>
-              <div class="mb-4">
-                <label for="cvv" class="block text-sm font-medium text-gray-700"
-                  >CVV</label
-                >
-                <input
-                  type="text"
-                  id="cvv"
-                  name="cvv"
-                  required
-                  class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                />
-              </div>
-              <div class="flex justify-between">
-                <button
-                  type="button"
-                  class="bg-red-500 text-white py-2 px-4 rounded"
-                  onclick="closeCardPopup()"
-                >
-                  Annuler
-                </button>
-                <button
-                  type="submit"
-                  class="bg-blue-600 text-white py-2 px-4 rounded"
-                >
-                  Ajouter la carte
-                </button>
-              </div>
-            </form>
-          </div>
+          </a>
         </div>
 
         <!-- Cards Section -->
@@ -253,24 +170,6 @@
       </main>
     </div>
 
-    <script>
-      function openCardPopup() {
-        document.getElementById('cardPopup').classList.remove('hidden')
-      }
-
-      // Fonction pour fermer le popup de la carte
-      function closeCardPopup() {
-        document.getElementById('cardPopup').classList.add('hidden')
-      }
-
-      // Ajouter un événement au formulaire de carte
-      document
-        .getElementById('cardForm')
-        .addEventListener('submit', function (e) {
-          e.preventDefault()
-          alert('Carte ajoutée avec succès !')
-          closeCardPopup()
-        })
-    </script>
+    <script></script>
   </body>
 </html>
