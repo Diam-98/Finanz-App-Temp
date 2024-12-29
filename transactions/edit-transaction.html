@@ -111,12 +111,14 @@
         <div id="cardPopup" class="w-full">
           <div class="bg-white p-6 rounded-lg shadow-lg">
             <h2 class="text-lg font-semibold mb-4">Ajouter une transaction</h2>
-            <form id="cardForm">
+            <div id="transactionForm">
+              <!-- Type de transaction -->
               <div class="mt-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2"
                   >Type de transaction</label
                 >
                 <select
+                  id="transactionType"
                   required
                   class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
                 >
@@ -126,67 +128,77 @@
                   <option value="transfert">Transfert</option>
                 </select>
               </div>
+
+              <!-- Montant -->
               <div class="mt-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2"
                   >Montant</label
                 >
                 <input
+                  id="amount"
                   class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
                   type="number"
                   min="0"
+                  required
                 />
               </div>
 
-              <div class="mt-4">
+              <!-- Source -->
+              <div id="sourceFields" class="hidden mt-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2"
-                  >Depuis : Sélectionnez un compte</label
+                  >Source</label
                 >
-                <div class="mb-4">
+                <select
+                  id="sourceType"
+                  class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+                >
+                  <option value="">Sélectionnez une source</option>
+                  <option value="carte">Carte</option>
+                  <option value="poche">Poche</option>
+                </select>
+
+                <!-- Liste des cartes ou des poches -->
+                <div id="sourceDetails" class="hidden mt-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2"
+                    >Sélectionnez une option</label
+                  >
                   <select
-                    id="account"
-                    name="account"
-                    required
+                    id="sourceOptions"
                     class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
                   >
-                    <option value="">Sélectionnez un compte</option>
-                    <option value="compte1">Compte 1</option>
-                    <option value="compte2">Compte 2</option>
-                    <!-- Ajoutez d'autres comptes ici -->
+                    <option value="">Sélectionnez une option</option>
+                    <!-- Rempli dynamiquement avec JS -->
                   </select>
                 </div>
               </div>
 
-              <div class="mt-4">
+              <!-- Destination -->
+              <div id="destinationFields" class="hidden mt-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2"
-                  >Nom de la transaction</label
-                >
-                <input
-                  class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
-                  type="text"
-                />
-              </div>
-
-              <div class="mt-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2"
-                  >Date de la transaction</label
-                >
-                <input
-                  class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
-                  type="date"
-                />
-              </div>
-
-              <div class="mt-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2"
-                  >Statut</label
+                  >Destination</label
                 >
                 <select
-                  required
+                  id="destinationType"
                   class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
                 >
-                  <option value="Completed">Complété</option>
-                  <option value="Pending">En attente</option>
+                  <option value="">Sélectionnez une destination</option>
+                  <option value="carte">Carte</option>
+                  <option value="poche">Poche</option>
                 </select>
+
+                <!-- Liste des cartes ou des poches -->
+                <div id="destinationDetails" class="hidden mt-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2"
+                    >Sélectionnez une option</label
+                  >
+                  <select
+                    id="destinationOptions"
+                    class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+                  >
+                    <option value="">Sélectionnez une option</option>
+                    <!-- Rempli dynamiquement avec JS -->
+                  </select>
+                </div>
               </div>
 
               <div class="mt-8 text-right">
@@ -196,12 +208,66 @@
                   Ajouter
                 </button>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </main>
     </div>
 
-    <script></script>
+    <script>
+      const transactionType = document.getElementById('transactionType')
+      const sourceType = document.getElementById('sourceType')
+      const destinationType = document.getElementById('destinationType')
+      const sourceFields = document.getElementById('sourceFields')
+      const destinationFields = document.getElementById('destinationFields')
+      const sourceDetails = document.getElementById('sourceDetails')
+      const destinationDetails = document.getElementById('destinationDetails')
+      const sourceOptions = document.getElementById('sourceOptions')
+      const destinationOptions = document.getElementById('destinationOptions')
+
+      // Simulated data for cartes and poches
+      const cartes = ['Carte 1', 'Carte 2', 'Carte 3']
+      const poches = ['Poche 1', 'Poche 2', 'Poche 3']
+
+      function populateOptions(element, options) {
+        element.innerHTML = '<option value="">Sélectionnez une option</option>'
+        options.forEach((option) => {
+          const opt = document.createElement('option')
+          opt.value = option
+          opt.textContent = option
+          element.appendChild(opt)
+        })
+      }
+
+      // Show fields based on transaction type
+      transactionType.addEventListener('change', function () {
+        const type = this.value
+        sourceFields.classList.toggle(
+          'hidden',
+          type !== 'depense' && type !== 'transfert'
+        )
+        destinationFields.classList.toggle('hidden', type === 'depense')
+      })
+
+      // Show source options based on selected type
+      sourceType.addEventListener('change', function () {
+        sourceDetails.classList.toggle('hidden', !this.value)
+        if (this.value === 'carte') {
+          populateOptions(sourceOptions, cartes)
+        } else if (this.value === 'poche') {
+          populateOptions(sourceOptions, poches)
+        }
+      })
+
+      // Show destination options based on selected type
+      destinationType.addEventListener('change', function () {
+        destinationDetails.classList.toggle('hidden', !this.value)
+        if (this.value === 'carte') {
+          populateOptions(destinationOptions, cartes)
+        } else if (this.value === 'poche') {
+          populateOptions(destinationOptions, poches)
+        }
+      })
+    </script>
   </body>
 </html>
